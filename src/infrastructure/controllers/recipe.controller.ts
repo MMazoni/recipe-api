@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { RecipeServices } from 'src/application/recipe/add-recipe-service';
 import { RecipeFactoryService } from 'src/application/recipe/recipe-factory-service';
 import { CreateRecipeDto } from 'src/domain/dto/create-recipe-dto';
@@ -11,11 +11,6 @@ export class RecipeController {
     private recipeFactoryService: RecipeFactoryService,
   ) {}
 
-  @Get()
-  async getAll() {
-    return 'Hello';
-  }
-
   @Post()
   async createRecipe(@Body() recipeDto: CreateRecipeDto) {
     const createRecipeResponse = new CreateRecipeResponseDto();
@@ -26,6 +21,7 @@ export class RecipeController {
       createRecipeResponse.success = true;
       createRecipeResponse.createdRecipe = createdRecipe;
     } catch (error) {
+      console.log('Something went wrong saving the recipe.');
       createRecipeResponse.success = false;
     }
     return createRecipeResponse;

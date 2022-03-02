@@ -1,4 +1,6 @@
 export abstract class IGenericRepository<T> {
+  abstract setModel(model: string);
+
   abstract getAll(): Promise<T[]>;
 
   abstract get(id: string): Promise<T>;

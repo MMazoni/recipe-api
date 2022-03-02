@@ -9,9 +9,10 @@ export class RecipeServices {
   ) {}
 
   async createRecipe(recipe: Recipe): Promise<Recipe> {
+    await this.dataServices.recipes.setModel('recipe');
     try {
       const createdRecipe = await this.dataServices.recipes.create(recipe);
-      await this.crmServices.recipeAdded(createdRecipe);
+      //await this.crmServices.recipeAdded(createdRecipe);
 
       return createdRecipe;
     } catch (error) {
