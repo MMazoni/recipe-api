@@ -9,3 +9,39 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  email    String  @unique
+  author   Author?
+}
+
+model Category {
+  id      Int      @id @default(autoincrement())
+  name    String
+  recipes Recipe[]
+}
+
+model Author {
+  id      Int      @id @default(autoincrement())
+  name    String
+  user    User     @relation(fields: [userId], references: [id])
+  userId  Int      @unique
+  recipes Recipe[]
+}
+
+model Recipe {
+  id                 Int      @id @default(autoincrement())
+  title              String   @unique
+  ingredients        String
+  ingredientsAmount  String
+  preparationMinutes Int
+  servings           Int
+  author             Author?  @relation(fields: [authorId], references: [id])
+  authorId           Int?
+  direction          String
+  category           Category @relation(fields: [categoryId], references: [id])
+  categoryId         Int
+}
