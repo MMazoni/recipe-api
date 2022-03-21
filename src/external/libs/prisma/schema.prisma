@@ -31,7 +31,7 @@ model Recipe {
   servings           Int
   author             Author?  @relation(fields: [authorId], references: [id])
   authorId           Int?
-  direction          String
+  directions         String
   category           Category @relation(fields: [categoryId], references: [id])
   categoryId         Int
 }
