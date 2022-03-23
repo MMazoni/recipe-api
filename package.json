@@ -70,6 +70,7 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "schema": "src/external/libs/prisma/schema.prisma"
+    "schema": "src/external/libs/prisma/schema.prisma",
+    "seed": "ts-node src/external/libs/prisma/seed.ts"
   }
 }
