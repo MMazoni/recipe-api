@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+  pgsql:
+    restart: always
+    image: postgres:9.5
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=maki
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - postgres-compose-network
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: 'mmazoni.andrade@gmail.com'
+  #     PGADMIN_DEFAULT_PASSWORD: '123'
+  #   ports:
+  #     - '16543:80'
+  #   depends_on:
+  #     - pgsql
+  #   networks:
+  #     - postgres-compose-network
+
+networks:
+  postgres-compose-network:
+    driver: bridge

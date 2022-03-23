@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -25,13 +25,13 @@ model Author {
 model Recipe {
   id                 Int      @id @default(autoincrement())
   title              String   @unique
-  ingredients        String
-  ingredientsAmount  String
+  ingredients        String[]
+  ingredientsAmount  String[]
   preparationMinutes Int
   servings           Int
   author             Author?  @relation(fields: [authorId], references: [id])
   authorId           Int?
-  directions         String
+  directions         String[]
   category           Category @relation(fields: [categoryId], references: [id])
   categoryId         Int
 }
