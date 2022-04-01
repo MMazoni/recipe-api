@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Recipe } from 'src/domain/entities/recipe';
+import { Recipe } from '@prisma/client';
 import { RecipeRepository } from 'src/domain/repositories/recipe.repository';
 import { PrismaService } from '../services/prisma.service';
 
@@ -7,8 +7,8 @@ import { PrismaService } from '../services/prisma.service';
 export class RecipeRepositoryPrisma implements RecipeRepository {
   constructor(private prisma: PrismaService) {}
 
-  create(r: Recipe): void {
-    this.prisma.recipe.create({
+  async create(r: Recipe): Promise<Recipe> {
+    return await this.prisma.recipe.create({
       data: {
         title: r.title,
         ingredients: r.ingredients.join(),
@@ -29,7 +29,7 @@ export class RecipeRepositoryPrisma implements RecipeRepository {
       },
     });
   }
-  get(): Recipe {
-    throw new Error('Method not implemented.');
+  async getAll() {
+    return await this.prisma.recipe.findMany();
   }
 }

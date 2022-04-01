@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { Recipe } from '@prisma/client';
+import { RecipeRepositoryPrisma } from 'src/external/adapters/recipe.repository.prisma';
 
 @Injectable()
 export class RecipeService {
-  getRecipe(): string {
-    return 'Recipe should be here!';
+  constructor(private readonly recipeRepository: RecipeRepositoryPrisma) {}
+
+  getRecipe(): Promise<Recipe[]> {
+    const recipes = this.recipeRepository.getAll();
+    return recipes;
   }
 }
