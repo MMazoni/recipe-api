@@ -3,8 +3,16 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: npm install && npm run build
-    command: npm run start
+  - init: npm install
+    command: |
+      gp sync-await database
+      npx prisma migrate dev
+      npm run seed
+      npm run start
+  - command: |
+      cp .env.dev .env
+      docker-compose up -d
+      gp sync-done database
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
