@@ -1,13 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { Recipe } from '@prisma/client';
+import { Controller, Get, Param } from '@nestjs/common';
+import { RecipeDto } from 'src/use-cases/ports/recipe.dto';
 import { RecipeService } from '../../use-cases/services/recipe.service';
 
-@Controller('api/recipe')
+@Controller('api/recipe/')
 export class RecipeController {
   constructor(private readonly recipeService: RecipeService) {}
 
-  @Get()
-  getRecipe(): Promise<Recipe[]> {
-    return this.recipeService.getRecipe();
+  @Get(':id')
+  getRecipe(@Param() params): Promise<RecipeDto> {
+    return this.recipeService.getRecipe(params.id);
   }
 }
