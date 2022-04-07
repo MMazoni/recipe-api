@@ -4,13 +4,13 @@ const prisma = new PrismaClient();
 
 async function main() {
   // category
-  await prisma.category.createMany({
-    data: [{ name: 'Massa' }, { name: 'Japonesa' }, { name: 'Doce' }],
+  const category = await prisma.category.create({
+    data: { name: 'Massa' },
   });
 
   // author
-  await prisma.author.createMany({
-    data: [{ name: 'Mazoni' }, { name: 'Miki' }],
+  const author = await prisma.author.create({
+    data: { name: 'Mazoni' },
   });
 
   // recipe
@@ -24,10 +24,10 @@ async function main() {
       'Ervas Finas',
     ],
     ingredientsAmount: ['500g', '1kg', '1', '45g', '30g'],
-    authorId: 1,
+    author_id: author.id,
     preparationMinutes: 35,
     servings: 4,
-    categoryId: 1,
+    category_id: category.id,
   };
   await prisma.recipe.create({
     data: recipe,

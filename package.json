@@ -17,8 +17,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seed": "ts-node src/external/repositories/prisma/seed.ts"
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^8.1.1",
@@ -71,6 +70,7 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "schema": "src/external/repositories/prisma/schema.prisma"
+    "schema": "src/external/repositories/prisma/schema.prisma",
+    "seed": "ts-node src/external/repositories/prisma/seed.ts"
   }
 }

@@ -11,27 +11,42 @@ datasource db {
 }
 
 model Category {
-  id      Int      @id @default(autoincrement())
+  id      String   @id @default(uuid())
   name    String
   recipes Recipe[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("categories")
 }
 
 model Author {
-  id      Int      @id @default(autoincrement())
+  id      String   @id @default(uuid())
   name    String
   recipes Recipe[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("authors")
 }
 
 model Recipe {
-  id                 Int      @id @default(autoincrement())
+  id                 String   @id @default(uuid())
   title              String   @unique
   ingredients        String[]
   ingredientsAmount  String[]
   preparationMinutes Int
   servings           Int
-  author             Author?  @relation(fields: [authorId], references: [id])
-  authorId           Int?
+  author             Author?  @relation(fields: [author_id], references: [id])
+  author_id          String?
   directions         String[]
-  category           Category @relation(fields: [categoryId], references: [id])
-  categoryId         Int
+  category           Category @relation(fields: [category_id], references: [id])
+  category_id        String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("recipes")
 }

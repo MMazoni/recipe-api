@@ -6,7 +6,7 @@ import { RecipeDto } from '../ports/recipe.dto';
 export class RecipeService {
   constructor(private readonly recipeRepository: RecipeRepositoryPrisma) {}
 
-  getRecipe(id: number): Promise<RecipeDto> {
+  getRecipe(id: string): Promise<RecipeDto> {
     return this.recipeRepository.get(id);
   }
 }

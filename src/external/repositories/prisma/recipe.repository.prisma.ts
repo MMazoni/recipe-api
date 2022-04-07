@@ -7,10 +7,10 @@ import { PrismaService } from '../../services/prisma.service';
 export class RecipeRepositoryPrisma implements RecipeRepository {
   constructor(private prisma: PrismaService) {}
 
-  async get(id: number): Promise<RecipeDto> {
+  async get(id: string): Promise<RecipeDto> {
     return await this.prisma.recipe.findUnique({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
   }
@@ -23,9 +23,9 @@ export class RecipeRepositoryPrisma implements RecipeRepository {
         ingredientsAmount: recipe.ingredientsAmount.join(),
         preparationMinutes: recipe.preparationMinutes,
         servings: recipe.servings,
-        authorId: recipe.authorId,
+        author_id: recipe.author_id,
         directions: recipe.directions.join(),
-        categoryId: recipe.categoryId,
+        category_id: recipe.category_id,
       },
     });
   }

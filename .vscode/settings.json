@@ -1,14 +1,5 @@
 {
-  "sqltools.connections": [
-    {
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 5432,
-      "driver": "PostgreSQL",
-      "name": "maki-db",
-      "database": "maki",
-      "username": "postgres",
-      "password": "postgres"
-    }
-  ]
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
 }
