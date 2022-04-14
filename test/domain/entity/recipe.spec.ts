@@ -4,6 +4,7 @@ import { Recipe } from '../../../src/domain/entity/recipe';
 
 test('Should create a recipe', function () {
   const recipe = new Recipe(
+    '',
     'Nhoque de Batata',
     ['batata', 'farinha de trigo', 'ovo'],
     [

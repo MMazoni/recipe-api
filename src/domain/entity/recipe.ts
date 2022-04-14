@@ -6,6 +6,7 @@ export class Recipe {
   readonly category: Category;
 
   constructor(
+    readonly id: number | string,
     readonly title: string,
     readonly ingredients: string[],
     readonly ingredientsAmount: IngredientAmount[],
@@ -15,9 +16,9 @@ export class Recipe {
     authorName: string,
     categoryName: string,
   ) {
-    this.author = new Author(authorName);
-    this.category = new Category(categoryName);
+    this.author = new Author('', authorName);
+    this.category = new Category('', categoryName);
   }
 }
 
-type IngredientAmount = { amount: number; unitOfMeasurement: string };
+export type IngredientAmount = { amount: number; unitOfMeasurement: string };

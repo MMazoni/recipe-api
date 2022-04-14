@@ -1,5 +1,8 @@
+import SubmitRecipe from '../../../src/application/use-case/submit-recipe';
+import RecipeRepositoryMemory from '../../../src/infra/repository/recipe-repository-memory';
+
 test('an author should submit a recipe', async function () {
-  const recipeRepository = new RecipeRepository();
+  const recipeRepository = new RecipeRepositoryMemory();
   const submitRecipe = new SubmitRecipe(recipeRepository);
   const input = {
     title: 'Nhoque de Batata',

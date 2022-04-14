@@ -1,3 +1,3 @@
 export class Category {
-  constructor(readonly name: string) {}
+  constructor(readonly id: number | string, readonly name: string) {}
 }
