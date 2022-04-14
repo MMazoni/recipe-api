@@ -1,5 +1,5 @@
 import { Recipe } from './recipe';
 
 export class Author {
-  constructor(readonly name: string, readonly recipes: Recipe[] = null) {}
+  constructor(readonly name: string, readonly recipes: Recipe[] = []) {}
 }
