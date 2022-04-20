@@ -6,7 +6,7 @@ import CategoryRepositoryMemory from '../../infra/repository/category-repository
 export default class SubmitRecipe {
   constructor(readonly recipeRepository: RecipeRepository) {}
 
-  async execute(input: Input): Promise<Output> {
+  async execute(input: SubmitRecipeInput): Promise<SubmitRecipeOutput> {
     const authorRepository = new AuthorRepositoryMemory();
     const author = await authorRepository.get(input.authorId);
     const categoryRepository = new CategoryRepositoryMemory();
@@ -31,7 +31,7 @@ export default class SubmitRecipe {
   }
 }
 
-export type Input = {
+export type SubmitRecipeInput = {
   title: string;
   ingredients: string[];
   ingredientsAmount: IngredientAmount[];
@@ -42,7 +42,7 @@ export type Input = {
   categoryId: number | string;
 };
 
-type Output = {
+type SubmitRecipeOutput = {
   id: number | string;
   message: string;
 };
