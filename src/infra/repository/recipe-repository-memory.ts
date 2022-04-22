@@ -1,4 +1,4 @@
-import { Recipe } from '../../domain/entity/recipe';
+import { Recipe } from '../../domain/entity/recipe/recipe';
 import RecipeRepository from '../../domain/repository/recipe-repository';
 
 export default class RecipeRepositoryMemory implements RecipeRepository {

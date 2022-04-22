@@ -1,4 +1,4 @@
-import { Author } from '../../../src/domain/entity/author';
+import { Author } from './author';
 
 test('should create an author without recipes', function () {
   const author = new Author('', 'Mazoni');

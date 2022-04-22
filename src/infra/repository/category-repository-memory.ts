@@ -1,4 +1,4 @@
-import { Category } from '../../domain/entity/category';
+import { Category } from '../../domain/entity/category/category';
 import CategoryRepository from '../../domain/repository/category-repository';
 
 export default class CategoryRepositoryMemory implements CategoryRepository {

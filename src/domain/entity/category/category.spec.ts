@@ -1,4 +1,4 @@
-import { Category } from '../../../src/domain/entity/category';
+import { Category } from './category';
 
 test('should create a category', function () {
   const category = new Category('', 'Massa');

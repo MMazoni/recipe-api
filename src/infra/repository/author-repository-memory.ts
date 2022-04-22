@@ -1,4 +1,4 @@
-import { Author } from '../../domain/entity/author';
+import { Author } from '../../domain/entity/author/author';
 import AuthorRepository from '../../domain/repository/author-repository';
 
 export default class AuthorRepositoryMemory implements AuthorRepository {

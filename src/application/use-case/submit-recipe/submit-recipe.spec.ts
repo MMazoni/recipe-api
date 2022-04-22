@@ -1,5 +1,5 @@
-import SubmitRecipe from '../../../src/application/use-case/submit-recipe';
-import RecipeRepositoryMemory from '../../../src/infra/repository/recipe-repository-memory';
+import SubmitRecipe from './submit-recipe';
+import RecipeRepositoryMemory from '../../../infra/repository/recipe-repository-memory';
 
 test('an author should submit a recipe', async function () {
   const recipeRepository = new RecipeRepositoryMemory();

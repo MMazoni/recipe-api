@@ -1,7 +1,7 @@
-import { IngredientAmount, Recipe } from '../../domain/entity/recipe';
-import RecipeRepository from '../../domain/repository/recipe-repository';
-import AuthorRepositoryMemory from '../../infra/repository/author-repository-memory';
-import CategoryRepositoryMemory from '../../infra/repository/category-repository-memory';
+import { IngredientAmount, Recipe } from '../../../domain/entity/recipe/recipe';
+import RecipeRepository from '../../../domain/repository/recipe-repository';
+import AuthorRepositoryMemory from '../../../infra/repository/author-repository-memory';
+import CategoryRepositoryMemory from '../../../infra/repository/category-repository-memory';
 
 export default class SubmitRecipe {
   constructor(readonly recipeRepository: RecipeRepository) {}

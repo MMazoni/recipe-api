@@ -1,5 +1,5 @@
-import { Author } from './author';
-import { Category } from './category';
+import { Author } from '../author/author';
+import { Category } from '../category/category';
 
 export class Recipe {
   readonly author: Author;

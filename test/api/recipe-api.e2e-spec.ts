@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 // import something from prisma
-import { AppModule } from '../../../src/app.module';
+import { AppModule } from '../../src/app.module';
 import request from 'supertest';
-import { recipeStub } from '../../stubs/recipeStub';
+import { recipeStub } from '../stubs/recipeStub';
 import { INestApplication } from '@nestjs/common';
 
 describe('Recipe API', () => {

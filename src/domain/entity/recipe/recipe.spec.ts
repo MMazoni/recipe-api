@@ -1,6 +1,6 @@
-import { Author } from '../../../src/domain/entity/author';
-import { Category } from '../../../src/domain/entity/category';
-import { Recipe } from '../../../src/domain/entity/recipe';
+import { Author } from '../author/author';
+import { Category } from '../category/category';
+import { Recipe } from './recipe';
 
 test('Should create a recipe', function () {
   const recipe = new Recipe(
