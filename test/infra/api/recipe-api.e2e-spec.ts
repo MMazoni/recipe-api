@@ -2,27 +2,29 @@ import { Test } from '@nestjs/testing';
 // import something from prisma
 import { AppModule } from '../../../src/app.module';
 import request from 'supertest';
-import recipeStub from '../../stubs/recipeStub';
+import { recipeStub } from '../../stubs/recipeStub';
+import { INestApplication } from '@nestjs/common';
 
 describe('Recipe API', () => {
-  let app: any;
+  let app: INestApplication;
   let httpServer: any;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-    const app = moduleRef.createNestApplication();
+    app = moduleRef.createNestApplication();
     await app.init();
     httpServer = app.getHttpServer();
   });
 
   afterAll(async () => {
+    await app.close();
     // remove all data
     // close the DB connection
   });
 
-  describe('Create a recipe', async () => {
+  it('POST /recipes', async () => {
     const createRecipeRequest = { recipeStub };
     const response = await request(httpServer)
       .post('/recipes')
