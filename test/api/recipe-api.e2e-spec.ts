@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 // import something from prisma
-import { AppModule } from '../../src/app.module';
+import { ApiModule } from '../../src/adapter/api/api.module';
 import request from 'supertest';
 import { recipeStub } from '../stubs/recipeStub';
 import { INestApplication } from '@nestjs/common';
@@ -11,7 +11,7 @@ describe('Recipe API', () => {
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [ApiModule],
     }).compile();
     app = moduleRef.createNestApplication();
     await app.init();
