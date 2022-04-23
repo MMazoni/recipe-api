@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+  pgsql:
+    restart: always
+    image: postgres:9.5
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=maki
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

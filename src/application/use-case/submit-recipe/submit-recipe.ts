@@ -1,7 +1,8 @@
-import { IngredientAmount, Recipe } from '../../../domain/entity/recipe/recipe';
+import { Recipe } from '../../../domain/entity/recipe/recipe';
 import RecipeRepository from '../../../domain/repository/recipe-repository';
 import AuthorRepositoryMemory from '../../../infra/repository/author-repository-memory';
 import CategoryRepositoryMemory from '../../../infra/repository/category-repository-memory';
+import { SubmitRecipeInput } from './SubmitRecipeInput';
 
 export default class SubmitRecipe {
   constructor(readonly recipeRepository: RecipeRepository) {}
@@ -12,7 +13,7 @@ export default class SubmitRecipe {
     const categoryRepository = new CategoryRepositoryMemory();
     const category = await categoryRepository.get(input.categoryId);
     const recipeInput: Recipe = {
-      id: 1,
+      id: 'uuid',
       title: input.title,
       author: author,
       category: category,
@@ -30,17 +31,6 @@ export default class SubmitRecipe {
       };
   }
 }
-
-export type SubmitRecipeInput = {
-  title: string;
-  ingredients: string[];
-  ingredientsAmount: IngredientAmount[];
-  preparationMinutes: number;
-  servings: number;
-  directions: string[];
-  authorId: number | string;
-  categoryId: number | string;
-};
 
 type SubmitRecipeOutput = {
   id: number | string;
