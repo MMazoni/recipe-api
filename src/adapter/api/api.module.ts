@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { RecipeController } from '../../controller/recipe-controller';
+import { RecipeController } from '../../controller/RecipeController';
 
 @Module({
   imports: [],

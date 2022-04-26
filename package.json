@@ -23,7 +23,7 @@
     "@nestjs/common": "^8.1.1",
     "@nestjs/core": "^8.1.1",
     "@nestjs/platform-express": "^8.1.1",
-    "@prisma/client": "^3.11.0",
+    "@prisma/client": "3.13.0-dev.29",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0"
@@ -43,7 +43,7 @@
     "eslint-plugin-prettier": "^3.4.1",
     "jest": "^27.3.0",
     "prettier": "^2.4.1",
-    "prisma": "^3.11.0",
+    "prisma": "3.13.0-dev.29",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.6",
     "ts-jest": "^27.0.7",
@@ -71,6 +71,6 @@
   },
   "prisma": {
     "schema": "src/infra/database/prisma/schema.prisma",
-    "seed": "ts-node src/intra/database/prisma/seed.ts"
+    "seed": "ts-node src/infra/database/prisma/seed.ts"
   }
 }
