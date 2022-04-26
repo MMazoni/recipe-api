@@ -1,4 +1,4 @@
-import SubmitRecipe from './submit-recipe';
+import SubmitRecipe from './SubmitRecipe';
 import RecipeRepositoryMemory from '../../../infra/repository/recipe-repository-memory';
 
 test('an author should submit a recipe', async function () {

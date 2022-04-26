@@ -7,28 +7,22 @@ import { SubmitRecipeInput } from './SubmitRecipeInput';
 export default class SubmitRecipe {
   constructor(readonly recipeRepository: RecipeRepository) {}
 
-  async execute(input: SubmitRecipeInput): Promise<SubmitRecipeOutput> {
+  async execute(input: SubmitRecipeInput): Promise<void> {
     const authorRepository = new AuthorRepositoryMemory();
     const author = await authorRepository.get(input.authorId);
     const categoryRepository = new CategoryRepositoryMemory();
     const category = await categoryRepository.get(input.categoryId);
-    const recipeInput: Recipe = {
-      id: 'uuid',
-      title: input.title,
-      author: author,
-      category: category,
-      ingredients: input.ingredients,
-      ingredientsAmount: input.ingredientsAmount,
-      preparationMinutes: input.preparationMinutes,
-      servings: input.servings,
-      directions: input.directions,
-    };
-    const recipeId = await this.recipeRepository.add(recipeInput);
-    if (recipeId)
-      return {
-        id: recipeId,
-        message: 'Receita criada com sucesso',
-      };
+    // const recipeInput: Recipe = {
+    //   title: input.title,
+    //   author: author,
+    //   category: category,
+    //   ingredients: input.ingredients,
+    //   ingredientsAmount: input.ingredientsAmount,
+    //   preparationMinutes: input.preparationMinutes,
+    //   servings: input.servings,
+    //   directions: input.directions,
+    // };
+    await this.recipeRepository.add(input);
   }
 }
 

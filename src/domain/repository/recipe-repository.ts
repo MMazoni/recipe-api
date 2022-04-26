@@ -1,5 +1,5 @@
-import { Recipe } from '../entity/recipe/recipe';
+import { SubmitRecipeInput } from '../../application/use-case/submit-recipe/SubmitRecipeInput';
 
 export default interface RecipeRepository {
-  add(input: Recipe): Promise<number | string>;
+  add(input: SubmitRecipeInput): Promise<void>;
 }

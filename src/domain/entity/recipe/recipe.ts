@@ -6,10 +6,9 @@ export class Recipe {
   readonly category: Category;
 
   constructor(
-    readonly id: number | string,
     readonly title: string,
     readonly ingredients: string[],
-    readonly ingredientsAmount: IngredientAmount[],
+    readonly ingredientsAmount: string[],
     readonly preparationMinutes: number,
     readonly servings: number,
     readonly directions: string[],

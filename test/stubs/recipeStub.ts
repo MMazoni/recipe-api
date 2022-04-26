@@ -1,4 +1,4 @@
-import { SubmitRecipeInput } from '../../src/application/use-case/submit-recipe/submit-recipe';
+import { SubmitRecipeInput } from '../../src/application/use-case/submit-recipe/SubmitRecipe';
 
 export const recipeStub = (): SubmitRecipeInput => {
   return {
