@@ -1,4 +1,4 @@
-import { Category } from './category';
+import { Category } from './Category';
 
 test('should create a category', function () {
   const category = new Category('', 'Massa');

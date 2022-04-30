@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 // import something from prisma
 import { ApiModule } from '../../src/adapter/api/api.module';
-import request from 'supertest';
+import * as request from 'supertest';
 import { recipeStub } from '../stubs/recipeStub';
 import { INestApplication } from '@nestjs/common';
 
@@ -25,7 +25,7 @@ describe('Recipe API', () => {
   });
 
   it('POST /recipes', async () => {
-    const createRecipeRequest = { recipeStub };
+    const createRecipeRequest = recipeStub();
     const response = await request(httpServer)
       .post('/recipes')
       .send(createRecipeRequest);

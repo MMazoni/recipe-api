@@ -1,6 +1,6 @@
-import { Author } from '../author/author';
-import { Category } from '../category/category';
-import { Recipe } from './recipe';
+import { Author } from '../author/Author';
+import { Category } from '../category/Category';
+import { Recipe } from './Recipe';
 
 test('Should create a recipe', function () {
   const recipe = new Recipe(

@@ -1,4 +1,4 @@
-import { Author } from './author';
+import { Author } from './Author';
 
 test('should create an author without recipes', function () {
   const author = new Author('', 'Mazoni');
