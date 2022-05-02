@@ -36,7 +36,7 @@ model Recipe {
   id                 String   @id @default(uuid())
   title              String   @unique
   ingredients        String[]
-  ingredientsAmount  String[]
+  ingredientsAmount  Json
   preparationMinutes Int
   servings           Int
   author             Author?  @relation(fields: [author_id], references: [id])
