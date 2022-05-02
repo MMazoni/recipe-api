@@ -6,7 +6,7 @@ export default class CategoryRepositoryMemory implements CategoryRepository {
 
   constructor() {
     this.category = [
-      { id: '1', name: 'Massa' },
+      { id: 'd8958861-1d41-4c2d-941a-afcdb1fa0489', name: 'Massa' },
       { id: '2', name: 'Frutos do mar' },
     ];
   }

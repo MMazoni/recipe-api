@@ -5,12 +5,12 @@ const prisma = new PrismaClient();
 async function main() {
   // category
   const category = await prisma.category.create({
-    data: { name: 'Massa' },
+    data: { id: 'd8958861-1d41-4c2d-941a-afcdb1fa0489', name: 'Massa' },
   });
 
   // author
   const author = await prisma.author.create({
-    data: { name: 'Mazoni' },
+    data: { id: '7757b9da-51b1-4586-8751-7dc2dafbc04a', name: 'Mazoni' },
   });
   const ingredientsAmount = [
     { amount: 500, unitOfMeasurement: 'g' },

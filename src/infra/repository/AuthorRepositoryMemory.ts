@@ -6,7 +6,11 @@ export default class AuthorRepositoryMemory implements AuthorRepository {
 
   constructor() {
     this.authors = [
-      { id: '1', name: 'Mazoni', recipes: [] },
+      {
+        id: '7757b9da-51b1-4586-8751-7dc2dafbc04a',
+        name: 'Mazoni',
+        recipes: [],
+      },
       { id: '2', name: 'Miki', recipes: [] },
     ];
   }

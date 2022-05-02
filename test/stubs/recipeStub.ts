@@ -4,12 +4,11 @@ export const recipeStub = (): SubmitRecipeInput => {
   return {
     title: 'Nhoque de Batata',
     ingredients: ['batata', 'farinha de trigo', 'ovo'],
-    ingredientsAmount: ['1kg', '0.5kg', '1'],
-    //  @TODO - Change this data on prisma schema to JSON
-    //   { amount: 1, unitOfMeasurement: 'kg' },
-    //   { amount: 0.5, unitOfMeasurement: 'kg' },
-    //   { amount: 1, unitOfMeasurement: 'unit' },
-    // ],
+    ingredientsAmount: [
+      { amount: 1, unitOfMeasurement: 'kg' },
+      { amount: 0.5, unitOfMeasurement: 'kg' },
+      { amount: 1, unitOfMeasurement: '' },
+    ],
     preparationMinutes: 20,
     servings: 4,
     directions: [
@@ -24,7 +23,7 @@ export const recipeStub = (): SubmitRecipeInput => {
       'Repita o processo até toda massa estar cozida.',
       'Escorra bem e coloque o nhoque em um refratário, reserve.',
     ],
-    authorId: '1',
-    categoryId: '1',
+    authorId: '7757b9da-51b1-4586-8751-7dc2dafbc04a',
+    categoryId: 'd8958861-1d41-4c2d-941a-afcdb1fa0489',
   };
 };
