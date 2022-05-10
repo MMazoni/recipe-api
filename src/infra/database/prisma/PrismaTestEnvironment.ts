@@ -1,6 +1,6 @@
 import type { Config } from '@jest/types';
 import { exec } from 'node:child_process';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import NodeEnvironment from 'jest-environment-node';
 import { Client } from 'pg';
 import util from 'node:util';
