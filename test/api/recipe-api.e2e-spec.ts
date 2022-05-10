@@ -4,6 +4,7 @@ import { ApiModule } from '../../src/adapter/api/api.module';
 import * as request from 'supertest';
 import { recipeStub } from '../stubs/recipeStub';
 import { INestApplication } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
 
 describe('Recipe API', () => {
   let app: INestApplication;
@@ -22,6 +23,19 @@ describe('Recipe API', () => {
     await app.close();
     // remove all data
     // close the DB connection
+  });
+
+  beforeEach(async () => {
+    const prisma = new PrismaClient();
+    // category
+    await prisma.category.create({
+      data: { id: 'd8958861-1d41-4c2d-941a-afcdb1fa0489', name: 'Massa' },
+    });
+
+    // author
+    await prisma.author.create({
+      data: { id: '7757b9da-51b1-4586-8751-7dc2dafbc04a', name: 'Mazoni' },
+    });
   });
 
   it('POST /recipes', async () => {
