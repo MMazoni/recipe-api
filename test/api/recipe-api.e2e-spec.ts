@@ -17,15 +17,7 @@ describe('Recipe API', () => {
     app = moduleRef.createNestApplication();
     await app.init();
     httpServer = app.getHttpServer();
-  });
 
-  afterAll(async () => {
-    await app.close();
-    // remove all data
-    // close the DB connection
-  });
-
-  beforeEach(async () => {
     const prisma = new PrismaClient();
     // category
     await prisma.category.create({
@@ -36,6 +28,29 @@ describe('Recipe API', () => {
     await prisma.author.create({
       data: { id: '7757b9da-51b1-4586-8751-7dc2dafbc04a', name: 'Mazoni' },
     });
+
+    // recipe
+    await prisma.recipe.create({
+      data: {
+        title: 'Carbonara',
+        ingredients: ['macarrão', 'ovo', 'bacon', 'azeite'],
+        ingredientsAmount: [
+          { amount: 500, unitOfMeasurement: 'g' },
+          { amount: 1, unitOfMeasurement: '' },
+          { amount: 100, unitOfMeasurement: 'g' },
+          { amount: 1, unitOfMeasurement: 'tsp' },
+        ],
+        preparationMinutes: 30,
+        servings: 3,
+        directions: [],
+        author_id: '7757b9da-51b1-4586-8751-7dc2dafbc04a',
+        category_id: 'd8958861-1d41-4c2d-941a-afcdb1fa0489',
+      },
+    });
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it('POST /recipes', async () => {
@@ -44,8 +59,10 @@ describe('Recipe API', () => {
       .post('/recipes')
       .send(createRecipeRequest);
     expect(response.status).toBe(201);
-    //expect(response.body).toMatchObject(createRecipeRequest);
+  });
 
-    // get recipe and compare with the recipe request
+  it('GET /recipes', async () => {
+    const response = await request(httpServer).get('/recipes');
+    expect(response.status).toBe(200);
   });
 });
