@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import RecipeRepository from '../../domain/repository/RecipeRepository';
 import { PrismaService } from '../database/prisma/PrismaService';
 import { Recipe } from '../../domain/entity/recipe/Recipe';
+import { IngredientsAmount } from '../../application/use-case/submit-recipe/SubmitRecipeInput';
 
 @Injectable()
 export class RecipeRepositoryPrisma implements RecipeRepository {
@@ -21,5 +22,21 @@ export class RecipeRepositoryPrisma implements RecipeRepository {
         category_id: recipe.getCategory().id,
       },
     });
+  }
+
+  async getAll(): Promise<Recipe[]> {
+    const recipes = await this.prisma.recipe.findMany();
+    recipes.map((prismaRecipe) => {
+      const recipe = new Recipe(
+        null,
+        prismaRecipe.title,
+        prismaRecipe.ingredients,
+        JSON.parse(prismaRecipe.ingredientsAmount),
+        prismaRecipe.preparationMinutes,
+        prismaRecipe.servings,
+        prismaRecipe.directions,
+      );
+    });
+    return;
   }
 }
