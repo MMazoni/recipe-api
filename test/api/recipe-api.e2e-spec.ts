@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 // import something from prisma
 import { ApiModule } from '../../src/adapter/api/api.module';
-import * as request from 'supertest';
+import request from 'supertest';
 import { recipeStub } from '../stubs/recipeStub';
 import { INestApplication } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';

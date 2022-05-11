@@ -4,20 +4,10 @@ services:
   pgsql:
     restart: always
     image: postgres:13
+    container_name: db
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_DB=maki
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-
-  db:
-    image: postgres:13
-    restart: always
-    container_name: integration-tests-prisma
-    ports:
-      - '5433:5432'
-    environment:
-      POSTGRES_USER: prisma
-      POSTGRES_PASSWORD: prisma
-      POSTGRES_DB: tests
+      POSTGRES_DB: maki
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
