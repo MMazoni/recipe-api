@@ -2,14 +2,13 @@ import { Injectable } from '@nestjs/common';
 import RecipeRepository from '../../domain/repository/RecipeRepository';
 import { PrismaService } from '../database/prisma/PrismaService';
 import { Recipe } from '../../domain/entity/recipe/Recipe';
-import { IngredientsAmount } from '../../application/use-case/submit-recipe/SubmitRecipeInput';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class RecipeRepositoryPrisma implements RecipeRepository {
   constructor(private prisma: PrismaService) {}
 
   async add(recipe: Recipe): Promise<void> {
-    console.log(JSON.stringify(recipe.getAuthor().id));
     await this.prisma.recipe.create({
       data: {
         title: recipe.title,
@@ -27,16 +26,22 @@ export class RecipeRepositoryPrisma implements RecipeRepository {
   async getAll(): Promise<Recipe[]> {
     const recipes = await this.prisma.recipe.findMany();
     recipes.map((prismaRecipe) => {
-      const recipe = new Recipe(
+      const jsonArray = prismaRecipe.ingredientsAmount as Prisma.JsonArray;
+      const ingredientAmount = [];
+      jsonArray.forEach((ingAmount) => {
+        ingAmount = ingAmount as string;
+        ingredientAmount.push(JSON.parse(ingAmount));
+      });
+      return new Recipe(
         null,
         prismaRecipe.title,
         prismaRecipe.ingredients,
-        JSON.parse(prismaRecipe.ingredientsAmount),
+        ingredientAmount,
         prismaRecipe.preparationMinutes,
         prismaRecipe.servings,
         prismaRecipe.directions,
       );
     });
-    return;
+    return recipes;
   }
 }
