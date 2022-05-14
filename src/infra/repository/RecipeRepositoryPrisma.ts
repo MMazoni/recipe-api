@@ -3,6 +3,8 @@ import RecipeRepository from '../../domain/repository/RecipeRepository';
 import { PrismaService } from '../database/prisma/PrismaService';
 import { Recipe } from '../../domain/entity/recipe/Recipe';
 import { Prisma } from '@prisma/client';
+import { Author } from '../../domain/entity/author/Author';
+import { Category } from '../../domain/entity/category/Category';
 
 @Injectable()
 export class RecipeRepositoryPrisma implements RecipeRepository {
@@ -24,15 +26,30 @@ export class RecipeRepositoryPrisma implements RecipeRepository {
   }
 
   async getAll(): Promise<Recipe[]> {
-    const recipes = await this.prisma.recipe.findMany();
-    recipes.map((prismaRecipe) => {
+    const recipes = await this.prisma.recipe.findMany({
+      include: {
+        author: {
+          select: {
+            name: true,
+            recipes: true,
+          },
+        },
+        category: {
+          select: {
+            name: true,
+            recipes: true,
+          },
+        },
+      },
+    });
+    recipes.map(async (prismaRecipe) => {
       const jsonArray = prismaRecipe.ingredientsAmount as Prisma.JsonArray;
       const ingredientAmount = [];
       jsonArray.forEach((ingAmount) => {
         ingAmount = ingAmount as string;
         ingredientAmount.push(JSON.parse(ingAmount));
       });
-      return new Recipe(
+      const recipe = new Recipe(
         null,
         prismaRecipe.title,
         prismaRecipe.ingredients,
@@ -41,6 +58,16 @@ export class RecipeRepositoryPrisma implements RecipeRepository {
         prismaRecipe.servings,
         prismaRecipe.directions,
       );
+      // TODO: missing third parameter(recipes)
+      const author = new Author(
+        prismaRecipe.author_id,
+        prismaRecipe.author.name,
+      );
+      const category = new Category(
+        prismaRecipe.category_id,
+        prismaRecipe.category.name,
+      );
+      return recipe;
     });
     return recipes;
   }
